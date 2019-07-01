@@ -11,7 +11,7 @@ namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
                 new[] { 3, 4 },
                 new[] { 2, 8 },
                 new[] { 5, 2 },
-                new[] { "P", "p", "C", "calories", "F", "f", "T", "t" },
+                new[] { "P", "p", "C", "c", "F", "f", "T", "t" },
                 new[] { 1, 0, 1, 0, 0, 1, 1, 0 });
             Test(
                 new[] { 3, 4, 1, 5 },
