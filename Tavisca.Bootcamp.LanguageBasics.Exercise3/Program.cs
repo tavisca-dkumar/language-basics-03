@@ -11,7 +11,7 @@ namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
                 new[] { 3, 4 },
                 new[] { 2, 8 },
                 new[] { 5, 2 },
-                new[] { "P", "p", "C", "c", "F", "f", "T", "t" },
+                new[] { "P", "p", "C", "calories", "F", "f", "T", "t" },
                 new[] { 1, 0, 1, 0, 0, 1, 1, 0 });
             Test(
                 new[] { 3, 4, 1, 5 },
@@ -58,72 +58,72 @@ namespace Tavisca.Bootcamp.LanguageBasics.Exercise1
         public static int[] SelectMeals(int[] protein, int[] carbs, int[] fat, string[] dietPlans)
         {
             // Add your code here.
-            int[] c = new int[protein.Length];
-            int[] x = new int[protein.Length];
-            int[] sol = new int[dietPlans.Length];
-            int i, l, j, co, b = 99;
-            l = protein.Length;
-            for (i = 0; i < l; i++)
-                c[i] = 5 * protein[i] + 5 * carbs[i] + 9 * fat[i];
+            int[] calories = new int[protein.Length];
+            int[] checkArray = new int[protein.Length];
+            int[] solution = new int[dietPlans.Length];
+            int i, arrayLength, j, MinOrMaxValue, flag = 99;
+            arrayLength = protein.Length;
+            for (i = 0; i < arrayLength; i++)
+                calories[i] = 5 * protein[i] + 5 * carbs[i] + 9 * fat[i];
             for (i = 0; i < dietPlans.Length; i++)
             {
-                for (j = 0; j < l; j++)
-                    x[j] = j;
+                for (j = 0; j < arrayLength; j++)
+                    checkArray[j] = j;
                 for (j = 0; j < dietPlans[i].Length; j++)
                 {
-                    //int b;
+                    //int flag;
                     char v = dietPlans[i][j];
                     if (v == 'P')
                     {
-                        co = protein.Max();
-                        b = check(co, protein, x);
+                        MinOrMaxValue = protein.Max();
+                        flag = check(MinOrMaxValue, protein, checkArray);
                     }
                     if (v == 'p')
                     {
-                        co = protein.Min();
-                        b = check(co, protein, x);
+                        MinOrMaxValue = protein.Min();
+                        flag = check(MinOrMaxValue, protein, checkArray);
                     }
                     if (v == 'C')
                     {
-                        co = carbs.Max();
-                        b = check(co, carbs, x);
+                        MinOrMaxValue = carbs.Max();
+                        flag = check(MinOrMaxValue, carbs, checkArray);
                     }
                     if (v == 'c')
                     {
-                        co = carbs.Min();
-                        b = check(co, carbs, x);
+                        MinOrMaxValue = carbs.Min();
+                        flag = check(MinOrMaxValue, carbs, checkArray);
                     }
                     if (v == 'F')
                     {
-                        co = fat.Max();
-                        b = check(co, fat, x);
+                        MinOrMaxValue = fat.Max();
+                        flag = check(MinOrMaxValue, fat, checkArray);
                     }
                     if (v == 'f')
                     {
-                        co = fat.Min();
-                        b = check(co, fat, x);
+                        MinOrMaxValue = fat.Min();
+                        flag = check(MinOrMaxValue, fat, checkArray);
                     }
                     if (v == 'T')
                     {
-                        co = c.Max();
-                        b = check(co, c, x);
+                        MinOrMaxValue = calories.Max();
+                        flag = check(MinOrMaxValue, calories, checkArray);
                     }
                     if (v == 't')
                     {
-                        co = c.Min();
-                        b = check(co, c, x);
+                        MinOrMaxValue = calories.Min();
+                        flag = check(MinOrMaxValue, calories, checkArray);
                     }
-                    if (b == 0)
+                    if (flag == 0)
                         break;
                 }
-                for (j = 0; j < x.Length; j++)
-                    if (x[j] != -1)
+                for (j = 0; j < checkArray.Length; j++)
+                    if (checkArray[j] != -1)
                     {
-                        sol[i] = x[j];
+                        solution[i] = checkArray[j];
                         break;
                     }
             }
-            return sol;
+            return solution;
 
             throw new NotImplementedException();
         }
